@@ -1,0 +1,110 @@
+const express = require('express')
+const app = express();
+const people = require('./people.json');
+
+var AWS = require("aws-sdk");
+
+var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' }); //reference of credential//saved in c/users/.aws/credentials
+AWS.config.credentials = credentials;
+// Set the region 
+AWS.config.update({ region: 'ap-south-1' });
+
+
+// import AWS object without services
+var AWS = require('aws-sdk/global');
+// import individual service
+var S3 = require('aws-sdk/clients/s3');
+
+
+
+//____________________________________________for receving post parameter formbody
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+//____________________________________________
+
+
+const server = app.listen(80, () => {
+    console.log(`Express running -> PORT ${server.address().port}`);
+});
+
+
+
+app.set('view engine', 'pug');
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', (req, res) => {
+    res.render('login')
+});
+
+app.get('/cred', (req, res) => { res.send(console.log("Access key:", AWS.config.credentials.secretAccessKey)); });
+
+app.get('/dynamo', (req, res) => {
+    // Create the DynamoDB service object
+    var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+
+    var params = {
+        TableName: 'Events',
+        Item: {
+            'Title': { S: 'hello' },
+            'CUSTOMER_NAME': { S: 'helllooooo' }
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    ddb.putItem(params, function(err, data) {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            console.log("Success", data.CUSTOMER_NAME);
+        }
+    });
+
+});
+
+app.get('/read', (req, res) => {
+    var ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
+
+    var params = {
+        TableName: 'Events',
+        Key: {
+            'Title': { S: '111' }
+        },
+        ProjectionExpression: 'CUSTOMER_NAME'
+    };
+
+    // Call DynamoDB to read the item from the table
+    ddb.getItem(params, function(err, data) {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            console.log("Success", data);
+        }
+    });
+})
+
+
+
+// POST http://localhost:8080/api/users
+// parameters sent with 
+
+
+
+
+app.post('/home', (req, res) => {
+    console.log(req.headers);
+    if (req.body.key == 'pass') {
+        res.render('home', {
+            val: req.body.key
+        });
+    } else {
+        res.render('404', {
+            val: req.query.key
+        });
+    }
+});
+
+app.post('/addevent', (req, res) => {
+    res.send('success')
+
+});

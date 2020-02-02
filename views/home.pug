@@ -1,0 +1,73 @@
+doctype html
+head
+  title InThisCity Admin
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  // ===============================================================================================
+  link(rel='icon' type='image/png' href='images/icons/favicon.ico')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/bootstrap/css/bootstrap.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='fonts/font-awesome-4.7.0/css/font-awesome.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='fonts/iconic/css/material-design-iconic-font.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/animate/animate.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/css-hamburgers/hamburgers.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/animsition/css/animsition.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/select2/select2.min.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='vendor/daterangepicker/daterangepicker.css')
+  // ===============================================================================================
+  link(rel='stylesheet' type='text/css' href='css/util.css')
+  link(rel='stylesheet' type='text/css' href='css/main.css')
+  // ===============================================================================================
+.limiter
+  .container-login100(style="background-image: url('images/bg-01.jpg');")
+    .wrap-login100
+      form.login100-form.validate-form(action='addevent' method='POST')
+         
+        span.login100-form-title.p-b-34.p-t-27 Paid Events Entry
+        .wrap-input100.validate-input(data-validate='Enter Title')
+          input.input100(type='text' name='title' placeholder='Event Title')
+          span.focus-input100(data-placeholder='Title')
+        .wrap-input100.validate-input(data-validate='Date')
+          input.input100(type='date' name='date' placeholder='') 
+          span.focus-input100(data-placeholder='Date')
+        .wrap-input100.validate-input(data-validate='Time')
+          input.input100(type='time' name='timef' placeholder='234') 
+          span.focus-input100(data-placeholder='Time (from)')
+        .wrap-input100.validate-input(data-validate='Time')
+          input.input100(type='time' name='timet' placeholder='') 
+          span.focus-input100(data-placeholder='Time (to)')  
+        .wrap-input100.validate-input(data-validate='Location')
+          input.input100(type='text' name='loc' placeholder='Location(12.952673, 77.636287)') 
+          span.focus-input100(data-placeholder='Lat,Long')  
+        .wrap-input100.validate-input(data-validate='Image')
+          input.input100(type='file' name='img' placeholder='Image File') 
+          span.focus-input100(data-placeholder='I')  
+        .wrap-input100.validate-input(data-validate='Description')
+            textarea.input100textbox(name='des')  
+            span.focus-input100(data-placeholder='D')       
+        .container-login100-form-btn
+          button.login100-form-btn Add Event
+#dropDownSelect1
+// ===============================================================================================
+script(src='vendor/jquery/jquery-3.2.1.min.js')
+// ===============================================================================================
+script(src='vendor/animsition/js/animsition.min.js')
+// ===============================================================================================
+script(src='vendor/bootstrap/js/popper.js')
+script(src='vendor/bootstrap/js/bootstrap.min.js')
+// ===============================================================================================
+script(src='vendor/select2/select2.min.js')
+// ===============================================================================================
+script(src='vendor/daterangepicker/moment.min.js')
+script(src='vendor/daterangepicker/daterangepicker.js')
+// ===============================================================================================
+script(src='vendor/countdowntime/countdowntime.js')
+// ===============================================================================================
+script(src='js/main.js')
