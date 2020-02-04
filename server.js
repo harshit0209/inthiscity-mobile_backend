@@ -53,18 +53,31 @@ app.post('/addevent', (req, res) => {
     console.log("ranval: " + ranval);
 
     var form = new formidable.IncomingForm();
+    form.multiples = true;
     form.parse(req, function(err, fields, files) {
-        console.log(files.img.path);
-        var filen = files.img.path;
+
+
+
+        var u = require('./upload.js');
+
+        var len = files.img.length
+        for (var i = 0; i < len; i++) {
+
+
+            u.uploadImage(files.img[i].path, ranval + i + ".png", ranval);
+            console.log("imagepath: " + files.img[i].path);
+            console.log("nameS3: " + ranval + "/" + ranval + i + ".png");
+
+
+        } //upload multiple files
 
         fields.image = ranval + ".png";
-
-
+        fields.imageTotal = len;
         var wri = require("./write.js"); //
         wri.putJson(ranval, fields); //write data to dynamodb
 
-        var u = require('./upload.js'); //
-        u.uploadImage(filen, ranval + ".png"); //write image to s3
+        console.log("files : " + files);
+
 
 
         res.render('home')

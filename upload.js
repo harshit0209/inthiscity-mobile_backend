@@ -1,5 +1,5 @@
 module.exports = {
-    uploadImage: function(filee, namee) {
+    uploadImage: function(filee, namee, folder) {
 
 
         let filen = filee;
@@ -18,7 +18,7 @@ module.exports = {
             fs.readFile(file, (err, data) => {
                 if (err) console.log("error: " + err);
                 const params = {
-                    Bucket: 'repositoryimg/events', // pass your bucket name
+                    Bucket: 'repositoryimg/events/' + folder, // pass your bucket name
                     Key: name, // file will be saved as testBucket/contacts.csv
                     Body: fs.createReadStream(file)
                 };
