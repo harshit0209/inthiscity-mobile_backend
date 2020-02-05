@@ -59,8 +59,16 @@ app.post('/addevent', (req, res) => {
 
 
         var u = require('./upload.js');
+        /*  var popup = require('popups');
 
-        var len = files.img.length
+        popup.alert({
+            content: ranval
+        });
+*/
+        console.log("Cover Image is : " + files["img-cover"].path);
+        u.uploadImage(files["img-cover"].path, ranval + ".png", ranval);
+
+        var len = files.img.length;
         for (var i = 0; i < len; i++) {
 
 
@@ -81,6 +89,7 @@ app.post('/addevent', (req, res) => {
 
 
         res.render('home')
+
     });
 });
 
