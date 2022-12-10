@@ -10,7 +10,7 @@
     "license": "NONE",
     "dependencies": {
         "body-parser": "^1.19.0",
-        "express": "^4.16.3",
+        "express": "^4.17.3",
         "popup": "0.0.3",
         "popups": "^1.1.3",
         "pug": "^2.0.3"
